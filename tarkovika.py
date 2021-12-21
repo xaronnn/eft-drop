@@ -99,8 +99,8 @@ def startSniffing(user = False):
     else:
         print("Re-sniffing started")
 
-    sniff(filter = "udp and portrange 50002-50004", stop_filter = setCurrentIP, count = 15)
-    #sniff(filter = "udp and portrange 17000-17100", stop_filter = setCurrentIP, count = 3)
+    #sniff(filter = "udp and portrange 50002-50004", stop_filter = setCurrentIP, count = 15)
+    sniff(filter = "udp and portrange 17000-17100", stop_filter = setCurrentIP, count = 3)
 
 def supervisor():
     global thread1, thread2, thread3
