@@ -1,4 +1,4 @@
-# Escapew From Tarkov Server Dropper
+# Escape From Tarkov Server Dropper
 Drop server when u die and you will get your inventory back again. (no ban risk.)
 
 
