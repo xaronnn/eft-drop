@@ -1,7 +1,9 @@
 # Escape From Tarkov Server Dropper
 Drop server when u die and you will get your inventory back again. (no ban risk.)
 
-`This script is not DDoS'ing to Tarkov servers. Script just sending exploit packets to Tarkov game server to take down.`
+`This script is not DDoS'ing to Tarkov servers.`
+
+`Script just sending exploit packets to Tarkov game server to take down.`
 
 
 # 🏃‍♀️ Running
