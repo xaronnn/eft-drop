@@ -11,7 +11,7 @@ import time
 import eel
 import random
 
-apiUrl = "http://127.0.0.1/api/v1/tarkov?key=1337"
+apiUrl = "https://api.xaron.pw/v2/tarkov?key=YOUR_PRIVATE_KEY"
 currentIP = "0.0.0.0"
 currentPort = 0
 isAttacking = False
@@ -32,12 +32,12 @@ def setCurrentIP(data):
     local = data[IP].dst[0:7]
     ip = data[IP].dst
     port = data[UDP].dport
-    if local != "192.168":
+    if local != "192.168": 
         if ip != currentIP:
             currentIP = ip
             currentPort = port
             eel.setCurrentIP(ip, port)
-            print("New IP address detected: {0}:{1}".format(ip, port))
+            print("New game server detected: {0}:{1}".format(ip, port))
 
 def handleAttack(ip, port, action):
     global apiUrl
@@ -86,11 +86,9 @@ def on_release(key):
         handleAttack(currentIP, currentPort, "stop")
         handleAttack(currentAttackingIP, currentAttackingPort, "stop")
         eel.setStatus(1)
-        print("User forced to stop atacks and close application.")
+        print("User forced to stop exploit attack and close application.")
         supervisor()
         return False
-
-#sniff(filter = "udp and portrange 17000-17100", stop_filter = setCurrentIP)
 
 @eel.expose
 def startSniffing(user = False):
@@ -99,7 +97,6 @@ def startSniffing(user = False):
     else:
         print("Re-sniffing started")
 
-    #sniff(filter = "udp and portrange 50002-50004", stop_filter = setCurrentIP, count = 15)
     sniff(filter = "udp and portrange 17000-17100", stop_filter = setCurrentIP, count = 3)
 
 def supervisor():
