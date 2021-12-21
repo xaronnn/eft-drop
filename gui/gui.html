@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarkovika GUI</title>
+    <link rel="shortcut icon" href="https://web-store.escapefromtarkov.com/favicons/favicon.ico?v=kPPzp2moQ2">
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
+        * {
+            font-family: 'Open Sans Condensed', sans-serif;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        html {
+            margin: auto;
+        }
+        body {
+            vertical-align: middle;
+            text-align: center;
+            background-color: #000018;
+            color: white
+        }
+    </style>
+</head>
+<body>
+    <h1>Status: <span id="status">-</span></h1>
+    <h2>Current IP: <span id="currentIP">-</span></h2>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript">
+        $(document).ready(() => {
+            window.resizeTo(300, 200)
+            window.addEventListener("resize", () => {
+                window.resizeTo(300, 200)
+            })
+        })
+        function setStatus(status) {
+            if(status == 1) {
+                $("#status").html("<a style=\"color: green\">Ready</a>")
+            } else if(status == 2) {
+                $("#status").html("<a style=\"color: darkred\">Attacking</a>")
+            } else {
+                $("#status").html("<a style=\"color: orange\">Waiting</a>")
+            }
+        }
+        function setCurrentIP(ip, port) {
+            console.log("set current IP")
+            if(!ip || !port) return;
+            $("#currentIP").html("<a style=\"color: #516678 !important;font-size: 19px;position: relative;top: -1px;\">"+ip+":"+port+"</a>")
+        }
+
+        eel.expose(setStatus)
+        eel.expose(setCurrentIP)
+    </script>
+    
+</body>
+</html>
