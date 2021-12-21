@@ -27,8 +27,7 @@ eel.init("gui", allowed_extensions=[".html", ".js", ".ico"])
 
 @eel.expose
 def setCurrentIP(data):
-    global currentIP
-    global currentPort
+    global currentIP, currentPort
     local = data[IP].dst[0:7]
     ip = data[IP].dst
     port = data[UDP].dport
@@ -40,9 +39,7 @@ def setCurrentIP(data):
             print("New game server detected: {0}:{1}".format(ip, port))
 
 def handleAttack(ip, port, action):
-    global apiUrl
-    global currentAttackingIP
-    global currentAttackingPort
+    global apiUrl, currentAttackingIP, currentAttackingPort
     if action == "start":
         currentAttackingIP = ip
         currentAttackingPort = port
